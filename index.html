@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto Russia</title>
+</head>
+
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <div class="header__container">
+        <img class="header__logo" src="./images/header-logo.svg" alt="лого Mesto Russia">
+      </div>
+    </header>
+    <main class="content">
+      <nav class="profile">
+        <img class="profile__userpic" src="./images/userpic.jpg" alt="Портрет Жака-Ива Кусто">
+        <div class="profile__info">
+          <div class="profile__container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button"></button>
+      </nav>
+      <section class="places">
+        <ul class="places__gallery">
+          <li class="places__card">
+            <img class="places__image" src="./images/teriberka.jpg" alt="Пляж Драконьи яйца в Териберке">
+            <div class="places__about">
+              <h2 class="places__name">Териберка</h2>
+              <button id="button1" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/russa.jpg" alt="Церковь Николая Чудотворца в Старой Руссе">
+            <div class="places__about">
+              <h2 class="places__name">Старая Русса</h2>
+              <button id="button2" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/kirovsk.jpg" alt="Вид со смотровой площадки на Хибины">
+            <div class="places__about">
+              <h2 class="places__name">Хибины</h2>
+              <button id="button3" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/polyana.jpg" alt="Ясная поляна">
+            <div class="places__about">
+              <h2 class="places__name">Тульская область</h2>
+              <button id="button4" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/kareliya.jpg" alt="Пейзаж Карелии">
+            <div class="places__about">
+              <h2 class="places__name">Карелия</h2>
+              <button id="button5" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+          <li class="places__card">
+            <img class="places__image" src="./images/novgorod.jpg" alt="Новгородский Кремль">
+            <div class="places__about">
+              <h2 class="places__name">Великий Новгород</h2>
+              <button id="button6" class="like" onclick="onClick(this)"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </footer>
+  </div>
+  <section class="popup">
+    <form class="popup__container">
+      <button class="popup__close-button"></button>
+      <h3 class="popup__heading">Редактировать профиль</h3>
+      <fieldset class="popup__fieldset">
+        <input type="text" placeholder="Представьтесь" class="popup__name-field popup__name-field_input">
+        <input type="text" placeholder="Расскажите о себе"
+          class="popup__description-field popup__description-field_input">
+      </fieldset>
+      <button class="popup__submit-button" type="submit">Сохранить</button>
+    </form>
+  </section>
+  <script src="./index.js"></script>
+</body>
+
+</html>

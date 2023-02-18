@@ -1,0 +1,6 @@
+.profile__userpic {
+  max-width: 120px;
+  max-height: 120px;
+  background-color: #c4c4c4;
+  border-radius: 50%;
+}
