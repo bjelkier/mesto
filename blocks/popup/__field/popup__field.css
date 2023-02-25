@@ -1,39 +1,41 @@
-.popup__description-field {
+.popup__field {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  min-width: 358px;
   padding: 30px 0 13px;
   border: none;
   border-bottom: solid 1px rgb(0, 0, 0, 0.2);
   box-sizing: border-box;
   margin: 0 36px;
-  min-width: 358px;
 }
 
-.popup__description-field::placeholder {
-  color: #000000;
+.popup__field::placeholder {
+  color: rgb(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 500px) {
-  .popup__description-field {
+  .popup__field {
     min-width: 320px;
+    line-height: 16.94px;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .popup__description-field {
+  .popup__field {
     min-width: 298px;
   }
 }
 
 @media screen and (max-width: 374px) {
-  .popup__description-field {
+  .popup__field {
     min-width: 238px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .popup__description-field {
+  .popup__field {
     margin: 0 22px;
+    padding: 29px 0 11px;
   }
 }

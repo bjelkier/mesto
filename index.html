@@ -16,59 +16,59 @@
       </div>
     </header>
     <main class="content">
-      <nav class="profile">
+      <section class="profile">
         <img class="profile__userpic" src="./images/userpic.jpg" alt="Портрет Жака-Ива Кусто">
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button type="button" class="profile__edit-button"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
-      </nav>
+        <button type="button" class="profile__add-button"></button>
+      </section>
       <section class="places">
         <ul class="places__gallery">
           <li class="places__card">
             <img class="places__image" src="./images/teriberka.jpg" alt="Пляж Драконьи яйца в Териберке">
             <div class="places__about">
               <h2 class="places__name">Териберка</h2>
-              <button id="button1" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button1" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/russa.jpg" alt="Церковь Николая Чудотворца в Старой Руссе">
             <div class="places__about">
               <h2 class="places__name">Старая Русса</h2>
-              <button id="button2" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button2" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/kirovsk.jpg" alt="Вид со смотровой площадки на Хибины">
             <div class="places__about">
               <h2 class="places__name">Хибины</h2>
-              <button id="button3" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button3" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
-            <img class="places__image" src="./images/polyana.jpg" alt="Ясная поляна">
+            <img class="places__image" src="./images/yasnaya_polyana.jpg" alt="Ясная поляна">
             <div class="places__about">
               <h2 class="places__name">Тульская область</h2>
-              <button id="button4" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button4" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/kareliya.jpg" alt="Пейзаж Карелии">
             <div class="places__about">
               <h2 class="places__name">Карелия</h2>
-              <button id="button5" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button5" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/novgorod.jpg" alt="Новгородский Кремль">
             <div class="places__about">
               <h2 class="places__name">Великий Новгород</h2>
-              <button id="button6" class="like" onclick="onClick(this)"></button>
+              <button type="button" id="button6" class="places__like"></button>
             </div>
           </li>
         </ul>
@@ -79,18 +79,18 @@
     </footer>
   </div>
   <section class="popup">
-    <form class="popup__container">
-      <button class="popup__close-button"></button>
+    <form name="edit-profile" class="popup__container">
+      <button type="button" class="popup__close-button"></button>
       <h3 class="popup__heading">Редактировать профиль</h3>
-      <fieldset class="popup__fieldset">
-        <input type="text" placeholder="Представьтесь" class="popup__name-field popup__name-field_input">
-        <input type="text" placeholder="Расскажите о себе"
-          class="popup__description-field popup__description-field_input">
-      </fieldset>
-      <button class="popup__submit-button" type="submit">Сохранить</button>
+      <div class="popup__fieldset">
+        <input type="text" name="name-field" placeholder="Представьтесь" class="popup__field popup__field_input_name">
+        <input type="text" name="description-field" placeholder="Расскажите о себе"
+          class="popup__field popup__field_input_description">
+      </div>
+      <button type="submit" class="popup__submit-button" type="submit">Сохранить</button>
     </form>
   </section>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

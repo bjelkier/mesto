@@ -1,6 +1,5 @@
-.like_liked {
-  background-image: url(../../../images/like-button-active.svg);
-  opacity: 1;
+.places__like {
+  background-image: url(../../../images/like-button.svg);
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
@@ -9,4 +8,10 @@
   padding: 0;
   border: none;
   cursor: pointer;
+  margin-right: 5px;
+}
+
+.places__like:hover {
+  opacity: 0.6;
+  transition: 0.5s;
 }
