@@ -13,7 +13,7 @@
   border-radius: 2px;
   border: none;
   cursor: pointer;
-  margin: 48px 36px 37px;
+  margin: 50px 36px 40px;
   padding: 0;
 }
 
@@ -22,7 +22,7 @@
   transition: 0.5s;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 540px) {
   .popup__submit-button {
     min-height: 46px;
     margin: 42px 22px 24px;

@@ -9,7 +9,7 @@
 @media screen and (max-width: 985px) {
   .places__gallery {
     grid-template-columns: repeat(2, minmax(min-content, 282px));
-    max-width: 600px;
+    max-width: 581px;
     margin: auto;
   }
 }

@@ -11,9 +11,7 @@
 <body class="body">
   <div class="page">
     <header class="header">
-      <div class="header__container">
-        <img class="header__logo" src="./images/header-logo.svg" alt="лого Mesto Russia">
-      </div>
+      <img class="header__logo" src="./images/header-logo.svg" alt="лого Mesto Russia">
     </header>
     <main class="content">
       <section class="profile">
@@ -33,42 +31,42 @@
             <img class="places__image" src="./images/teriberka.jpg" alt="Пляж Драконьи яйца в Териберке">
             <div class="places__about">
               <h2 class="places__name">Териберка</h2>
-              <button type="button" id="button1" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/russa.jpg" alt="Церковь Николая Чудотворца в Старой Руссе">
             <div class="places__about">
               <h2 class="places__name">Старая Русса</h2>
-              <button type="button" id="button2" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/kirovsk.jpg" alt="Вид со смотровой площадки на Хибины">
             <div class="places__about">
               <h2 class="places__name">Хибины</h2>
-              <button type="button" id="button3" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/yasnaya_polyana.jpg" alt="Ясная поляна">
             <div class="places__about">
               <h2 class="places__name">Тульская область</h2>
-              <button type="button" id="button4" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/kareliya.jpg" alt="Пейзаж Карелии">
             <div class="places__about">
               <h2 class="places__name">Карелия</h2>
-              <button type="button" id="button5" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
           <li class="places__card">
             <img class="places__image" src="./images/novgorod.jpg" alt="Новгородский Кремль">
             <div class="places__about">
               <h2 class="places__name">Великий Новгород</h2>
-              <button type="button" id="button6" class="places__like"></button>
+              <button type="button" class="places__like"></button>
             </div>
           </li>
         </ul>
@@ -79,17 +77,18 @@
     </footer>
   </div>
   <section class="popup">
-    <form name="edit-profile" class="popup__container">
+    <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h3 class="popup__heading">Редактировать профиль</h3>
-      <div class="popup__fieldset">
-        <input type="text" name="name-field" placeholder="Представьтесь" class="popup__field popup__field_input_name">
-        <input type="text" name="description-field" placeholder="Расскажите о себе"
-          class="popup__field popup__field_input_description">
-      </div>
+    </div>
+    <form name="edit-profile" class="popup__form">
+      <input type="text" name="name-field" placeholder="Представьтесь" class="popup__field popup__field_input_name">
+      <input type="text" name="description-field" placeholder="Расскажите о себе"
+        class="popup__field popup__field_input_description">
       <button type="submit" class="popup__submit-button">Сохранить</button>
     </form>
   </section>
+
   <script src="./scripts/index.js"></script>
 </body>
 
