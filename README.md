@@ -6,6 +6,6 @@ ___________________________
 
 ### GitHub Pages
 
-* [Ссылка на GH Pages](https://viki25.github.io/mesto/)
+* [Ссылка на GH Pages](https://bjelkier.github.io/mesto/)
 
 **Благодарю за уделенное время!**
