@@ -1,36 +1,12 @@
-const initialCards = [
-  {
-    name: 'Выборг',
-    link: 'https://i.ibb.co/fdvY68v/IMG-8396.jpg'
-  },
-  {
-    name: 'Казань',
-    link: 'https://i.ibb.co/BTYGd05/IMG-4934.jpg'
-  },
-  {
-    name: 'Ладожское озеро',
-    link: 'https://i.ibb.co/j67VNp7/IMG-6876.jpg'
-  },
-  {
-    name: 'Сестрорецк',
-    link: 'https://i.ibb.co/GtCkLT7/IMG-5488.jpg'
-  },
-  {
-    name: 'Тула',
-    link: 'https://i.ibb.co/GPJrTL4/IMG-4973-2.jpg'
-  },
-  {
-    name: 'Мурманск',
-    link: 'https://i.ibb.co/N26d5XV/IMG-8645.jpg'
-  }
-];
+import {
+  initialCards
+} from './initialCardsArray.js';
 
 const cardTemplate = document.querySelector('#places__card');
 const cardContainer = document.querySelector('.places__gallery');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupImage = imagePopup.querySelector('.image-popup__image');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
-const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -50,6 +26,24 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+document.addEventListener('keydown', function (event) {
+  if (event.code === 'Escape') {
+    const openPopups = document.querySelectorAll('.popup_opened');
+    if (openPopups.length) {
+      closePopup(openPopups[openPopups.length - 1]);
+    }
+  }
+});
+
+const overlays = document.querySelectorAll('.popup');
+for (let i = 0; i < overlays.length; i++) {
+  overlays[i].addEventListener('click', function (event) {
+    if (event.target === this) {
+      closePopup(this);
+    }
+  });
 }
 
 closeButtons.forEach((button) => {

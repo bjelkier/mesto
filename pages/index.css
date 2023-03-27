@@ -36,3 +36,7 @@
 @import url(../blocks/places/__delete-button/places__delete-button.css);
 @import url(../blocks/places/__place/places__place.css);
 @import url(../blocks/places/__block/places__block.css);
+@import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input-error/_visible/popup__input-error_visible.css);
+@import url(../blocks/popup/__field/_input/popup__field_input_error.css);
