@@ -13,7 +13,7 @@
   border-radius: 2px;
   border: none;
   cursor: pointer;
-  margin: 50px 36px 40px;
+  margin: 0;
   padding: 0;
 }
 
@@ -25,7 +25,6 @@
 @media screen and (max-width: 540px) {
   .popup__submit-button {
     min-height: 46px;
-    margin: 42px 22px 24px;
     font-size: 14px;
     line-height: 17px;
   }

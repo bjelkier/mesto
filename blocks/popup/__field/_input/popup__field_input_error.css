@@ -1,9 +1,0 @@
-.popup__field_input_error {
-	border-bottom: 1px solid #f00;
-	color: #f00;
-	margin-top: 13px;
-}
-
-.popup__field_input_error:first-child {
-	margin-top: 35px;
-}
