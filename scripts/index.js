@@ -34,7 +34,7 @@ const overlays = document.querySelectorAll('.popup');
 for (let i = 0; i < overlays.length; i++) {
   overlays[i].addEventListener('click', function (event) {
     if (event.target === event.currentTarget) {
-      closePopup(this);
+      closePopup(event.currentTarget);
     }
   });
 }

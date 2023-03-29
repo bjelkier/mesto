@@ -1,23 +1,11 @@
 .popup__input-error {
-	color: #f00;
-	pointer-events: none;
-	opacity: 0;
-	width: 100%;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 15px;
-	box-sizing: border-box;
-	/* margin: 5px 0 13px; */
-	margin: 5px 0 13px;
-	max-width: 358px;
-	min-height: 20px;
+  color: #f00;
+  pointer-events: none;
+  opacity: 0;
+  width: 100%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0px;
+  min-height: 30px;
 }
-
-@media screen and (max-width: 540px) {
-	.popup__input-error {
-		max-width: 238px;
-		min-height: 30px;
-		/* margin: 5px 22px 0; */
-	}
-}
-

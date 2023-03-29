@@ -40,16 +40,14 @@
       <button type="button" class="popup__close-button"></button>
       <h3 class="popup__heading">Редактировать профиль</h3>
       <form name="edit-profile" class="popup__form" novalidate>
-        <div class="popup__input-block">
+        <fieldset class="popup__input-block">
           <input placeholder="Представьтесь" type="text" id="name-input" name="name-input" required minlength="2"
             maxlength="40" class="popup__input popup__input_name-input">
-          <p class="name-input-error popup__input-error"></p>
-        </div>
-        <div class="popup__input-block">
+          <span class="name-input-error popup__input-error"></span>
           <input placeholder="Расскажите о себе" type="text" id="about-input" name="about-input" required minlength="2"
             maxlength="200" class="popup__input popup__input_about-input">
-          <p class="about-input-error popup__input-error"></p>
-        </div>
+          <span class="about-input-error popup__input-error"></span>
+        </fieldset>
         <button type="submit" class="popup__submit-button popup__submit-button_disabled">Сохранить</button>
       </form>
     </div>
@@ -60,17 +58,15 @@
       <button type="button" class="popup__close-button"></button>
       <h3 class="popup__heading">Новое место</h3>
       <form name="edit-place" class="popup__form" novalidate>
-        <div class="popup__input-block">
+        <fieldset class="popup__input-block">
           <input placeholder="Название" type="text" id="destination-input" name="destination-input" required
             minlength="2" maxlength="30" class="popup__input">
-          <p class="destination-input-error popup__input-error"></p>
-        </div>
-        <div class="popup__input-block">
+          <span class="destination-input-error popup__input-error"></span>
           <input placeholder="Ссылка на картинку" type="url" id="url-input" name="url-input" required
             class="popup__input">
-          <p class="url-input-error popup__input-error"></p>
-        </div>
-        <button type="submit" class="popup__submit-button popup__submit-button_disabled">Сохранить</button>
+          <span class="url-input-error popup__input-error"></span>
+        </fieldset>
+        <button type="submit" class="popup__submit-button popup__submit-button_disabled">Создать</button>
       </form>
     </div>
   </section>
