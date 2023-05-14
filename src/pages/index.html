@@ -4,18 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./src/pages/index.css">
   <title>Mesto Russia</title>
 </head>
 
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./src/images/header-logo.svg" alt="лого Mesto Russia">
+      <img class="header__logo" src="<%=require('../images/header-logo.svg')%>" alt="лого Mesto Russia">
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__userpic" src="./src/images/userpic.jpg" alt=" Портрет Жака-Ива Кусто">
+        <img class="profile__userpic" src="<%=require('../images/userpic.jpg')%>" alt="Портрет Жака-Ива Кусто">
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -89,16 +88,6 @@
       <button class="places__delete-button" type="button" aria-label="Удалить"></button>
     </li>
   </template>
-
-  <script src="./src/pages/index.js"></script>
-  <script type="module" src="./src/components/Card.js"></script>
-  <script type="module" src="./src/components/FormValidator.js"></script>
-  <script type="module" src="./src/components/Section.js"></script>
-  <script type="module" src="./src/components/Popup.js"></script>
-  <script type="module" src="./src/components/PopupWithForm.js"></script>
-  <script type="module" src="./src/components/PopupWithImage.js"></script>
-  <script type="module" src="./src/components/UserInfo.js"></script>
-  <script type="module" src="./src/utils/constants.js"></script>
 
 </body>
 

@@ -1,7 +1,7 @@
 export class FormValidator {
-  constructor(validationConfig, formSelector) {
+  constructor(validationConfig, formElement) {
     this.validationConfig = validationConfig;
-    this.formElement = document.querySelector(formSelector);
+    this.formElement = formElement;
     this.formInputsList = Array.from(this.formElement.querySelectorAll(this.validationConfig.inputSelector));
     this.buttonElement = this.formElement.querySelector(this.validationConfig.submitButtonSelector);
     this._setEventListeners();
@@ -46,35 +46,20 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    const forms = Array.from(document.querySelectorAll(this.validationConfig.formSelector));
-    forms.forEach(form => {
-      const inputList = Array.from(form.querySelectorAll(this.validationConfig.inputSelector));
-      const buttonElement = form.querySelector(this.validationConfig.submitButtonSelector);
-      form.addEventListener('reset', () => {
-        this._disableButton(buttonElement);
-      });
-      inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', () => {
-          this._checkInputValidity(form, inputElement);
-          if (this._hasInvalidInput(inputList)) {
-            this._disableButton(buttonElement);
-          } else {
-            this._enableButton(buttonElement);
-          }
-        });
+    const inputList = this.formInputsList;
+    const buttonElement = this.buttonElement;
+    this.formElement.addEventListener('reset', () => {
+      this._disableButton(buttonElement);
+    });
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        this._checkInputValidity(this.formElement, inputElement);
+        if (this._hasInvalidInput(inputList)) {
+          this._disableButton(buttonElement);
+        } else {
+          this._enableButton(buttonElement);
+        }
       });
     });
   }
 }
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error',
-  inputVisibleError: 'popup__input-error_active',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-};
-
-const formValidator = new FormValidator(validationConfig, validationConfig.formSelector);
