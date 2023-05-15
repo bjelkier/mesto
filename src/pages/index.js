@@ -24,23 +24,7 @@ initialCards.forEach((item) => {
   cardContainer.append(renderCards(item));
 });
 
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-
-function openUserPopup(userPopup) {
-  openPopup(userPopup);
-  addName.value = userName.textContent;
-  addDescription.value = userDescription.textContent;
-}
-
-function openPlacePopup() {
-  placeForm.reset();
-  openPopup(placePopup);
-}
-
-new PopupWithImage(imagePopup);
+const newImagePopup = new PopupWithImage(imagePopup);
 
 const userInfoPopup = new PopupWithForm({
   overlays: profilePopupForm,
@@ -57,8 +41,6 @@ const newCardPopup = new PopupWithForm({
   },
   popupSelector: placeForm
 });
-
-const newImagePopup = new PopupWithImage(imagePopup);
 
 function handleProfilePopupFormSubmit(evt) {
   evt.preventDefault();
@@ -80,12 +62,22 @@ function handlePlaceFormSubmit(event) {
   closePopup(placePopup);
 }
 
-addButton.addEventListener('click', openPlacePopup);
+addButton.addEventListener('click', () => {
+  placeForm.reset();
+  openPopup(placePopup);
+});
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
-editButton.addEventListener('click', function () {
-  openUserPopup(userPopup);
+editButton.addEventListener('click', () => {
+  openPopup(userPopup);
+  addName.value = userName.textContent;
+  addDescription.value = userDescription.textContent;
 });
 
 profilePopupForm.addEventListener('submit', handleProfilePopupFormSubmit);
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
