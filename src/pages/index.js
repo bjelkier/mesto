@@ -31,7 +31,6 @@ const userInfoPopup = new PopupWithForm({
   handleFormSubmit: (data) => {
     UserInfo.setUserInfo(data)
   },
-  popupSelector: profilePopupForm
 });
 
 const newCardPopup = new PopupWithForm({
@@ -39,7 +38,6 @@ const newCardPopup = new PopupWithForm({
   handleFormSubmit: (cardData) => {
     cardList.addItem(createCard(cardData));
   },
-  popupSelector: placeForm
 });
 
 function handleProfilePopupFormSubmit(evt) {
