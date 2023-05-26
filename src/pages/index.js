@@ -5,7 +5,6 @@ import { FormValidator } from '../components/FormValidator.js';
 import './index.css';
 
 import { Section } from '../components/Section.js'
-import { Popup } from '../components/Popup.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js'
@@ -36,9 +35,14 @@ const userInfoPopup = new PopupWithForm({
 const newCardPopup = new PopupWithForm({
   overlays: placeForm,
   handleFormSubmit: (cardData) => {
-    cardList.addItem(createCard(cardData));
+    section.addItem(renderCards(cardData));
   },
 });
+
+const section = new Section({
+  items: initialCards,
+  renderer: renderCards
+}, '.places__gallery');
 
 function handleProfilePopupFormSubmit(evt) {
   evt.preventDefault();
@@ -47,7 +51,7 @@ function handleProfilePopupFormSubmit(evt) {
   closePopup(userPopup);
 }
 
-function handlePlaceFormSubmit(event) {
+export function handlePlaceFormSubmit(event) {
   event.preventDefault();
   const cardName = event.target.elements['destination-input'].value;
   const cardImage = event.target.elements['url-input'].value;
@@ -65,7 +69,7 @@ addButton.addEventListener('click', () => {
   openPopup(placePopup);
 });
 
-placeForm.addEventListener('submit', handlePlaceFormSubmit);
+// placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
 editButton.addEventListener('click', () => {
   openPopup(userPopup);
@@ -74,8 +78,3 @@ editButton.addEventListener('click', () => {
 });
 
 profilePopupForm.addEventListener('submit', handleProfilePopupFormSubmit);
-
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});

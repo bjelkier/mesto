@@ -80,7 +80,16 @@ export const isEscEvent = (evt, action) => {
 }
 
 export const handleOverlayClose = (evt) => {
-  if (evt.target.classList.contains('popup')) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
     closePopup(evt.target);
   }
 }
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+placeForm.addEventListener('submit', handlePlaceFormSubmit);
+
+import { handlePlaceFormSubmit } from "../pages/index.js";

@@ -21,13 +21,13 @@ export class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
+    super.setEventListeners();
     this._formSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
       this._handleFormSubmit(inputValues);
       this.closePopup();
     });
-    super.setEventListeners();
   }
 
   closePopup() {
