@@ -1,19 +1,17 @@
-import { cardContainer } from '../utils/constants.js';
-import { renderCards } from '../pages/index.js'
-
 export class Section {
-  constructor({ renderCards }, cardContainer) {
-    this._renderCards = renderCards
-    this._container = document.querySelector(cardContainer)
+  constructor({ items, renderer }, cardContainer) {
+    this._container = document.querySelector('.places__gallery')
+    this._items = items
+    this._renderer = renderer
   }
 
-  renderItems(items) {
-    items.forEach((item) => {
-      return this._renderCards(item)
-    });
+  renderItems() {
+    this._items.forEach(data => {
+      this._renderer(data, this._container)
+    })
   }
 
-  addItem = (item) => {
-    this._container.prepend(item)
+  addItem(element) {
+    this._container.prepend(element)
   }
 }

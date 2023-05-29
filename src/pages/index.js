@@ -1,80 +1,65 @@
-import { Card } from '../components/Card.js';
-import { initialCards } from '../utils/constants.js';
-import { FormValidator } from '../components/FormValidator.js';
-
 import './index.css';
 
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js'
-import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { UserInfo } from '../components/UserInfo.js'
-import { cardContainer, validationConfig, imagePopup, userPopup, profilePopupForm, placePopup, cardTemplate, placeForm, addButton, editButton, closeButtons, addName, addDescription, userName, userDescription, openPopup, closePopup } from '../utils/constants.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js';
+
+import { initialCards, validationConfig, userPopup, placePopup, addButton, editButton, addName, addDescription } from '../utils/constants.js'
 
 new FormValidator(validationConfig, userPopup);
 new FormValidator(validationConfig, placePopup);
 
-function renderCards(initialCards) {
-  const card = new Card(initialCards, '#places__card');
-  const cardElement = card.generateCard();
-  return cardElement;
+const createCard = (data) => {
+  const card = new Card(data, '#places__card', () => {
+    picPopup.open(data.name, data.link)
+  });
+  return card.generateCard();
 }
 
-initialCards.forEach((item) => {
-  cardContainer.append(renderCards(item));
-});
-
-const newImagePopup = new PopupWithImage(imagePopup);
-
-const userInfoPopup = new PopupWithForm({
-  overlays: profilePopupForm,
-  handleFormSubmit: (data) => {
-    UserInfo.setUserInfo(data)
-  },
-});
-
-const newCardPopup = new PopupWithForm({
-  overlays: placeForm,
-  handleFormSubmit: (cardData) => {
-    section.addItem(renderCards(cardData));
-  },
-});
-
-const section = new Section({
-  items: initialCards,
-  renderer: renderCards
-}, '.places__gallery');
-
-function handleProfilePopupFormSubmit(evt) {
-  evt.preventDefault();
-  userName.textContent = addName.value;
-  userDescription.textContent = addDescription.value;
-  closePopup(userPopup);
+const renderCard = (data, wrap) => {
+  const card = createCard(data);
+  wrap.append(card);
 }
 
-export function handlePlaceFormSubmit(event) {
-  event.preventDefault();
-  const cardName = event.target.elements['destination-input'].value;
-  const cardImage = event.target.elements['url-input'].value;
-  const cardData = {
-    name: cardName,
-    link: cardImage,
-  };
-  const completeCard = renderCards(cardData);
-  cardContainer.prepend(completeCard);
-  closePopup(placePopup);
+const handleProfilePopupFormSubmit = (data) => {
+  const { name, about } = data
+  userInfo.setUserInfo(name, about)
+  editProfilePopup.close()
 }
 
-addButton.addEventListener('click', () => {
-  placeForm.reset();
-  openPopup(placePopup);
-});
+const handlePlaceFormSubmit = (data) => {
+  const card = createCard({
+    name: data['destination-input'],
+    link: data['url-input']
+  })
 
-// placeForm.addEventListener('submit', handlePlaceFormSubmit);
+  section.addItem(card)
+  addCardPopup.close()
+}
 
 editButton.addEventListener('click', () => {
-  openPopup(userPopup);
-  addName.value = userName.textContent;
-  addDescription.value = userDescription.textContent;
+  const { name, job } = userInfo.getUserInfo()
+  addName.value = name
+  addDescription.value = job
+  editProfilePopup.open()
 });
 
-profilePopupForm.addEventListener('submit', handleProfilePopupFormSubmit);
+addButton.addEventListener('click', () => {
+  addCardPopup.open()
+});
+
+const section = new Section({ items: initialCards, renderer: renderCard }, 'places__gallery')
+const picPopup = new PopupWithImage('.image-popup')
+const addCardPopup = new PopupWithForm('.place-popup', handlePlaceFormSubmit)
+const editProfilePopup = new PopupWithForm('.user-popup', handleProfilePopupFormSubmit)
+
+picPopup.setEventListeners()
+addCardPopup.setEventListeners()
+editProfilePopup.setEventListeners()
+
+section.renderItems()
+
+const userInfo = new UserInfo({ userNameSelector: '.profile__name', userDescriptionSelector: '.profile__description' })

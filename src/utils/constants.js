@@ -1,10 +1,10 @@
-export const overlays = document.querySelector('.popup');
+// export const popupSelector = document.querySelector('.popup');
 export const cardTemplate = document.querySelector('#places__card');
 export const cardContainer = document.querySelector('.places__gallery');
 export const imagePopup = document.querySelector('.image-popup');
 export const imagePopupImage = imagePopup.querySelector('.image-popup__image');
 export const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
-export const closeButtons = document.querySelectorAll('.popup__close-button');
+// export const closeButtons = document.querySelectorAll('.popup__close-button');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const userName = document.querySelector('.profile__name');
@@ -58,13 +58,13 @@ export const initialCards = [
 export const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', handleEscUp);
-  popup.addEventListener('mousedown', handleOverlayClose);
+  // popup.addEventListener('mousedown', handleOverlayClose);
 }
 
 export const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscUp);
-  popup.removeEventListener('mousedown', handleOverlayClose);
+  // popup.removeEventListener('mousedown', handleOverlayClose);
 }
 
 export const handleEscUp = (evt) => {
@@ -79,17 +79,17 @@ export const isEscEvent = (evt, action) => {
   }
 }
 
-export const handleOverlayClose = (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-    closePopup(evt.target);
-  }
-}
+// export const handleOverlayClose = (evt) => {
+//   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+//     closePopup(evt.target);
+//   }
+// }
 
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
+// closeButtons.forEach((button) => {
+//   const popup = button.closest('.popup');
+//   button.addEventListener('click', () => closePopup(popup));
+// });
 
-placeForm.addEventListener('submit', handlePlaceFormSubmit);
+// placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
-import { handlePlaceFormSubmit } from "../pages/index.js";
+// import { handlePlaceFormSubmit } from "../pages/index.js";

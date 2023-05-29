@@ -1,33 +1,34 @@
-import { overlays } from '../utils/constants.js';
+import { ESC_KEYCODE } from '../utils/constants.js'
 
 export class Popup {
-  constructor(overlays) {
-    this._popup = overlays;
-    this._closeByEsc = this._closeByEsc.bind(this);
+  constructor(popupSelector) {
+    this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-  _closeByEsc(evt) {
-    evt.preventDefault();
-    if (evt.key === "Escape") {
-      this.closePopup();
+  _handleEscClose(evt) {
+    if (evt.which === ESC_KEYCODE) {
+      this.close();
     }
   }
 
   setEventListeners() {
-    this._popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-        this.closePopup();
+    const closeButton = this._popup.querySelector('.popup__close-button')
+
+    this._popup.addEventListener('click', (e) => {
+      if (!e.target.closest('.popup__container') || e.target === closeButton) {
+        this.close();
       }
-    });
+    })
   }
 
-  openPopup() {
+  open() {
     this._popup.classList.add('popup_opened');
-    document.addEventListener('keydown', this._closeByEsc);
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
-  closePopup() {
+  close() {
     this._popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._closeByEsc);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 }

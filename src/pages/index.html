@@ -40,10 +40,10 @@
       <h3 class="popup__heading">Редактировать профиль</h3>
       <form name="edit-profile" class="popup__form" novalidate>
         <fieldset class="popup__input-block">
-          <input placeholder="Представьтесь" type="text" id="name-input" name="name-input" required minlength="2"
+          <input placeholder="Представьтесь" type="text" id="name-input" name="name" required minlength="2"
             maxlength="40" class="popup__input popup__input_name-input">
           <span class="name-input-error popup__input-error"></span>
-          <input placeholder="Расскажите о себе" type="text" id="about-input" name="about-input" required minlength="2"
+          <input placeholder="Расскажите о себе" type="text" id="about-input" name="about" required minlength="2"
             maxlength="200" class="popup__input popup__input_about-input">
           <span class="about-input-error popup__input-error"></span>
         </fieldset>
@@ -71,7 +71,7 @@
   </section>
 
   <div class="popup image-popup">
-    <div class="image-popup__container">
+    <div class="image-popup__container popup__container">
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       <img class="image-popup__image">
       <h3 class="image-popup__title"></h3>

@@ -1,17 +1,13 @@
-import { Popup } from './Popup.js';
+import { cardTemplate, imagePopup, imagePopupImage, imagePopupTitle } from '../utils/constants.js';
 
-import { cardTemplate, imagePopup, imagePopupImage, imagePopupTitle, openPopup } from '../utils/constants.js'
+export { Card };
 
-export class Card {
-  constructor(initialCards, cardTemplate, handleClick) {
-    this._link = initialCards.link;
-    this._name = initialCards.name;
+class Card {
+  constructor(data, cardTemplate, handleImageClick) {
+    this._link = data.link;
+    this._text = data.name;
     this._cardTemplate = cardTemplate;
-    this._handleClick = handleClick;
-    this._element = undefined;
-    this._likeButton = null;
-    this._deleteButton = null;
-    this._imagePopupImage = null;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -34,13 +30,6 @@ export class Card {
     }
   }
 
-  _handlePopupClick() {
-    imagePopupImage.src = this._link;
-    imagePopupImage.alt = this._name;
-    openPopup(imagePopup);
-    imagePopupTitle.textContent = this._name;
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._handleLike();
@@ -50,9 +39,7 @@ export class Card {
       this._handleDelete();
     });
 
-    this._imagePopupImage.addEventListener('click', () => {
-      this._handlePopupClick();
-    });
+    this._imagePopupImage.addEventListener('click', () => this._handleImageClick());
   }
 
   generateCard() {
@@ -60,8 +47,8 @@ export class Card {
 
     this._imagePopupImage = this._element.querySelector('.places__image');
     this._imagePopupImage.src = this._link;
-    this._imagePopupImage.alt = this._name;
-    this._element.querySelector('.places__place').textContent = this._name;
+    this._imagePopupImage.alt = this._text;
+    this._element.querySelector('.places__place').textContent = this._text;
     this._likeButton = this._element.querySelector('.places__like');
     this._deleteButton = this._element.querySelector('.places__delete-button');
 
