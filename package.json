@@ -9,6 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://bjelkier.github.io/mesto/",
   "author": "Albina Makarova",
   "license": "ISC",
   "devDependencies": {
