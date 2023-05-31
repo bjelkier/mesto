@@ -1,15 +1,15 @@
-// export const popupSelector = document.querySelector('.popup');
 export const cardTemplate = document.querySelector('#places__card');
 export const cardContainer = document.querySelector('.places__gallery');
 export const imagePopup = document.querySelector('.image-popup');
 export const imagePopupImage = imagePopup.querySelector('.image-popup__image');
 export const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
-// export const closeButtons = document.querySelectorAll('.popup__close-button');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
+export const setPicButton = document.querySelector('.profile__userpic-button');
 export const userName = document.querySelector('.profile__name');
 export const userDescription = document.querySelector('.profile__description');
 export const userPopup = document.querySelector('.user-popup');
+export const userpicPopup = document.querySelector('.userpic-popup');
 export const profilePopupForm = document.querySelector('.popup__form');
 export const placePopup = document.querySelector('.place-popup');
 export const placeForm = document.querySelector('.popup__form[name="edit-place"]');

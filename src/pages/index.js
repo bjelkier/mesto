@@ -7,43 +7,102 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 
-import { initialCards, validationConfig, userPopup, placePopup, addButton, editButton, addName, addDescription } from '../utils/constants.js'
+import { initialCards, validationConfig, userPopup, placePopup, userpicPopup, addButton, editButton, setPicButton, addName, addDescription } from '../utils/constants.js'
+
+import { api } from '../components/Api.js'
+
+let userId;
+
 
 new FormValidator(validationConfig, userPopup);
 new FormValidator(validationConfig, placePopup);
+new FormValidator(validationConfig, userpicPopup);
+
+api.getProfile()
+  .then(res => {
+    userId = res._id
+  })
 
 const createCard = (data) => {
-  const card = new Card(data, '#places__card', () => {
-    picPopup.open(data.name, data.link)
-  });
+  const card = new Card(
+    data,
+    '#places__card',
+    () => {
+      picPopup.open(data.name, data.link)
+    },
+    (id) => {
+      confirmationPopup.open()
+      confirmationPopup.changeSubmitHandler(() => {
+        api.deleteCard(id)
+          .then(res => {
+            card.deleteCard()
+            confirmationPopup.close()
+          })
+      })
+    },
+    (id) => {
+      if (card.isLiked()) {
+        api.deleteLike(id)
+          .then(res => {
+            card.setLikes(res.likes)
+          })
+      } else {
+        api.addLike(id)
+          .then(res => {
+            card.setLikes(res.likes)
+          })
+      }
+    },
+  );
   return card.generateCard();
 }
 
 const renderCard = (data, wrap) => {
   const card = createCard(data);
-  wrap.append(card);
+  wrap.prepend(card);
 }
 
 const handleProfilePopupFormSubmit = (data) => {
   const { name, about } = data
-  userInfo.setUserInfo(name, about)
-  editProfilePopup.close()
+
+  api.editProfile(name, about)
+    .then(() => {
+      userInfo.setUserInfo({ name, about })
+      editProfilePopup.close()
+    })
+    .finally(() => editProfilePopup.resetSubmitText());
+};
+
+function handleUserPicFormSubmit(values) {
+  api.updateUserPic(values.avatar)
+    .then(res => {
+      userInfo.setAvatar(res.avatar);
+      userPicPopup.close()
+    })
+    .finally(() => userPicPopup.resetSubmitText());
 }
 
 const handlePlaceFormSubmit = (data) => {
-  const card = createCard({
-    name: data['destination-input'],
-    link: data['url-input']
-  })
-
-  section.addItem(card)
-  addCardPopup.close()
-}
+  api.addCard(data['destination-input'], data['url-input'])
+    .then(res => {
+      const card = createCard({
+        name: res.name,
+        link: res.link,
+        likes: res.likes,
+        id: res._id,
+        userId: userId,
+        ownerId: res.owner._id
+      })
+      section.addItem(card)
+      addCardPopup.close()
+    })
+    .finally(() => addCardPopup.resetSubmitText());
+};
 
 editButton.addEventListener('click', () => {
-  const { name, job } = userInfo.getUserInfo()
+  const { name, about } = userInfo.getUserInfo()
   addName.value = name
-  addDescription.value = job
+  addDescription.value = about
   editProfilePopup.open()
 });
 
@@ -51,15 +110,46 @@ addButton.addEventListener('click', () => {
   addCardPopup.open()
 });
 
-const section = new Section({ items: initialCards, renderer: renderCard }, 'places__gallery')
+setPicButton.addEventListener('click', () => {
+  userPicPopup.open()
+});
+
+const section = new Section({ items: [], renderer: renderCard }, 'places__gallery')
 const picPopup = new PopupWithImage('.image-popup')
 const addCardPopup = new PopupWithForm('.place-popup', handlePlaceFormSubmit)
 const editProfilePopup = new PopupWithForm('.user-popup', handleProfilePopupFormSubmit)
+const confirmationPopup = new PopupWithForm('.confirmation-popup')
+const userPicPopup = new PopupWithForm('.userpic-popup', handleUserPicFormSubmit)
 
-picPopup.setEventListeners()
-addCardPopup.setEventListeners()
-editProfilePopup.setEventListeners()
+picPopup.setEventListeners();
+addCardPopup.setEventListeners();
+editProfilePopup.setEventListeners();
+confirmationPopup.setEventListeners();
+userPicPopup.setEventListeners();
 
-section.renderItems()
 
-const userInfo = new UserInfo({ userNameSelector: '.profile__name', userDescriptionSelector: '.profile__description' })
+const userInfo = new UserInfo({ userNameSelector: '.profile__name', userDescriptionSelector: '.profile__description', userPicSelector: '.profile__userpic' })
+
+Promise.all([api.getProfile(), api.getCards()])
+  .then(([userData, cards]) => {
+
+    var cardList = [];
+
+    cards.forEach(data => {
+      cardList.unshift({
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        id: data._id,
+        userId: userId,
+        ownerId: data.owner._id
+      })
+    });
+    userInfo.setUserInfo(userData);
+    section.renderItems(cardList);
+    api.editProfile(userData.name, userData.about);
+
+  })
+  .catch((err) => {
+    console.log(err);
+  });

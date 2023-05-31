@@ -5,7 +5,8 @@ export class Section {
     this._renderer = renderer
   }
 
-  renderItems() {
+  renderItems(items) {
+    if (items != null) this._items = items;
     this._items.forEach(data => {
       this._renderer(data, this._container)
     })
