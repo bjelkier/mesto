@@ -18,11 +18,6 @@ new FormValidator(validationConfig, userPopup);
 new FormValidator(validationConfig, placePopup);
 new FormValidator(validationConfig, userpicPopup);
 
-api.getProfile()
-  .then(res => {
-    userId = res._id
-  })
-
 const createCard = (data) => {
   const card = new Card(
     data,
@@ -36,8 +31,9 @@ const createCard = (data) => {
         api.deleteCard(id)
           .then(res => {
             card.deleteCard()
-            confirmationPopup.close()
           })
+          .catch(err => console.log(`Ошибка.....: ${err}`))
+          .finally(() => confirmationPopup.close());
       })
     },
     (id) => {
@@ -46,11 +42,13 @@ const createCard = (data) => {
           .then(res => {
             card.setLikes(res.likes)
           })
+          .catch(err => console.log(`Ошибка.....: ${err}`))
       } else {
         api.addLike(id)
           .then(res => {
             card.setLikes(res.likes)
           })
+          .catch(err => console.log(`Ошибка.....: ${err}`))
       }
     },
   );
@@ -59,7 +57,7 @@ const createCard = (data) => {
 
 const renderCard = (data, wrap) => {
   const card = createCard(data);
-  wrap.prepend(card);
+  section.addItem(card);
 }
 
 const handleProfilePopupFormSubmit = (data) => {
@@ -70,6 +68,7 @@ const handleProfilePopupFormSubmit = (data) => {
       userInfo.setUserInfo({ name, about })
       editProfilePopup.close()
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => editProfilePopup.resetSubmitText());
 };
 
@@ -79,6 +78,7 @@ function handleUserPicFormSubmit(values) {
       userInfo.setAvatar(res.avatar);
       userPicPopup.close()
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => userPicPopup.resetSubmitText());
 }
 
@@ -96,6 +96,7 @@ const handlePlaceFormSubmit = (data) => {
       section.addItem(card)
       addCardPopup.close()
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => addCardPopup.resetSubmitText());
 };
 
@@ -132,6 +133,7 @@ const userInfo = new UserInfo({ userNameSelector: '.profile__name', userDescript
 
 Promise.all([api.getProfile(), api.getCards()])
   .then(([userData, cards]) => {
+    userId = userData._id;
 
     var cardList = [];
 
@@ -147,9 +149,6 @@ Promise.all([api.getProfile(), api.getCards()])
     });
     userInfo.setUserInfo(userData);
     section.renderItems(cardList);
-    api.editProfile(userData.name, userData.about);
-
   })
-  .catch((err) => {
-    console.log(err);
-  });
+
+  .catch(err => console.log(`Ошибка.....: ${err}`));
